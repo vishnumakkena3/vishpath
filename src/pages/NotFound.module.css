@@ -1,0 +1,126 @@
+.notFoundContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Fixed height instead of min-height */
+  padding: 0 20px; /* Reduced padding */
+  margin: 0; /* Ensure no margin */
+  text-align: center;
+  background-color: #121212;
+  background-image: 
+    radial-gradient(at 10% 0%, rgba(120, 60, 255, 0.1) 0px, transparent 50%),
+    radial-gradient(at 90% 20%, rgba(255, 124, 241, 0.1) 0px, transparent 50%);
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+.notFoundTitle {
+    font-size: clamp(4rem, 10vw, 8rem); /* Responsive font size */
+  margin-bottom: 10px; /* Reduced margin */
+  font-weight: 700;
+  /* margin-bottom: 20px; */
+  background: linear-gradient(90deg, #7c3aed, #EC4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.notFoundTitle span {
+  display: inline-block;
+  animation: bounce 2s infinite;
+  font-size: 6rem;
+  -webkit-text-fill-color: initial;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.notFoundSubtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem); /* Responsive font size */
+  margin-bottom: 20px; /* Reduced margin */
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+}
+
+.notFoundImage {
+  width: 100%;
+  max-width: 400px; /* Reduced from 500px */
+  max-height: 25vh; /* Limit image height */
+  margin: 20px 0;
+  object-fit: contain; /* Maintain aspect ratio while fitting */
+  filter: drop-shadow(0 0 15px rgba(124, 58, 237, 0.3));
+  opacity: 0.9;
+}
+
+.notFoundText {
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* Responsive font size */
+  margin-bottom: 20px; /* Reduced margin */
+  line-height: 1.6;
+  /* margin-bottom: 30px; */
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+}
+
+.notFoundButton {
+  padding: 12px 24px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #7C3AED, #8B5CF6);
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+.notFoundButton:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.notFoundButton:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .notFoundTitle {
+    font-size: 6rem;
+  }
+  
+  .notFoundTitle span {
+    font-size: 4.5rem;
+  }
+  
+  .notFoundSubtitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .notFoundTitle {
+    font-size: 4rem;
+  }
+  
+  .notFoundTitle span {
+    font-size: 3rem;
+  }
+  
+  .notFoundSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .notFoundText {
+    font-size: 1rem;
+  }
+}

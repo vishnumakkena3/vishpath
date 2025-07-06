@@ -1,0 +1,317 @@
+/* Container for the entire dashboard */
+.dashboardContainer {
+  position: relative; /* Required for canvas layering */
+  min-height: 100vh;
+  background-color: #0a0a0a; /* Dark base background */
+  background-image: 
+    radial-gradient(at 10% 0%, rgba(120, 60, 255, 0.15) 0px, transparent 50%),
+    radial-gradient(at 90% 20%, rgba(255, 124, 241, 0.15) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, rgba(60, 120, 255, 0.15) 0px, transparent 50%);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Three.js canvas background */
+.canvasBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Behind all content */
+}
+
+/* Main title styling */
+.mainTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #ffffff;
+  line-height: 1.2;
+  max-width: 1000px;
+  position: relative; /* Ensure it stays above canvas */
+  z-index: 1;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #7C3AED, #EC4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Grid layout for cards */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 1rem;
+  position: relative; /* Ensure cards are above canvas */
+  z-index: 1;
+}
+
+/* Individual card styling */
+.card {
+  position: relative;
+  background: rgba(23, 23, 28, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+/* Glowing border effect */
+.glowBorder {
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 20px;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(124, 58, 237, 0.5),
+    rgba(236, 72, 153, 0.5),
+    transparent
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .glowBorder {
+  opacity: 1;
+  animation: borderRotate 4s linear infinite;
+}
+
+/* Card content container */
+.cardContent {
+  position: relative;
+  padding: 2rem;
+  height: 100%;
+  background: rgba(23, 23, 28, 0.95);
+  border-radius: 18px;
+  z-index: 1;
+}
+
+/* Icon container styling */
+.iconContainer {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.2));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+/* Card title styling */
+.cardTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #fff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Card description styling */
+.cardDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1.5rem;
+}
+
+/* Button styling */
+.cardButton {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.buttonGlow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.cardButton:hover .buttonGlow {
+  transform: translateX(100%);
+}
+
+/* Active card effect */
+.activeCard {
+  transform: translateY(-10px);
+}
+
+/* Border rotation animation */
+@keyframes borderRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Floating animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Shine effect on cards */
+.card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.03),
+    transparent
+  );
+  transform: rotate(30deg);
+  transition: transform 0.5s;
+}
+
+.card:hover::after {
+  transform: rotate(30deg) translate(50%, 50%);
+}
+
+/* Pulsing effect for active card icons */
+.activeCard .iconContainer {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(124, 58, 237, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .mainTitle {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .cardGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+.dashboardContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.canvasBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.mainTitle {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 3rem;
+  color: white;
+}
+
+.gradientText {
+  background: linear-gradient(90deg, #7C3AED, #EC4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background: rgba(30, 30, 40, 0.8);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
