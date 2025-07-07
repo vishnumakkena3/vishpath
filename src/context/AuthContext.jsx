@@ -19,7 +19,7 @@ export const AuthProvider = ({children}) => {
         }
 
         try{
-            const response = await axios.get('https://your-backend.onrender.com/protected', {
+            const response = await axios.get('https://https://backend-for-vishpath.onrender.com/protected', {
                 headers: {Authorization: `Bearer ${token}`}
             });
             setIsAuthenticated(true);
