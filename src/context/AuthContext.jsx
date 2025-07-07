@@ -19,8 +19,8 @@ export const AuthProvider = ({children}) => {
         }
 
         try{
-            const response = await axios.get('https://https://backend-for-vishpath.onrender.com/protected', {
-                headers: {Authorization: `Bearer ${token}`}
+            const response = await axios.get(`${import.meta.env.VITE_API_BASE}/protected`, {
+                headers: { Authorization: `Bearer ${token}` }
             });
             setIsAuthenticated(true);
             setUser({ token, ...response.data.user});
