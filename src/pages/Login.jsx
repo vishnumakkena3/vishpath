@@ -15,22 +15,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://https://backend-for-vishpath.onrender.com/login", {
+      const response = await axios.post("http://localhost:3001/login", {
         email,
         password,
       });
-  
-      const token = response.data.token;
-  
-      if (token) {
-        localStorage.setItem('token', token);
-        login(token);
-        navigate("/dashboard");
-      } else {
-        seterror("Login failed: No token returned");
-      }
+      login(response.data.token);
+      // localStorage.setItem('token', response.data.token);
+      navigate("/dashboard");
     } catch (err) {
-      console.error("Login error:", err);
       seterror(err.response?.data?.error || "An error occurred during login");
     }
   };
