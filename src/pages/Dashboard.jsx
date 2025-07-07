@@ -525,13 +525,13 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="p-6 bg-zinc-900/50 rounded-xl border border-emerald-500/20">
                 <h3 className="text-white text-xl font-semibold mb-2">Email</h3>
-                <p className="text-gray-400">contact@VishPath.com</p>
+                <p className="text-gray-400">vishnumakkena3@gmail.com</p>
               </div>
               <div className="p-6 bg-zinc-900/50 rounded-xl border border-pink-500/20">
                 <h3 className="text-white text-xl font-semibold mb-2">
                   Location
                 </h3>
-                <p className="text-gray-400">Nellore, Andhra Pradesh, India</p>
+                <p className="text-gray-400">chinna pavani, Andhra Pradesh, India</p>
               </div>
               <div className="p-6 bg-zinc-900/50 rounded-xl border border-purple-500/20">
                 <h3 className="text-white text-xl font-semibold mb-2">
